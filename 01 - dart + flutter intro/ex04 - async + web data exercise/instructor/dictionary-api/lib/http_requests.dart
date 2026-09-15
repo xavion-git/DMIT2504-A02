@@ -48,3 +48,13 @@ Future<String> getWordDefinition(String word) async {
   // 3. navigate through the shape of the data and return the definition
   return jsonData['entries'][0]['senses'][0]['definition'];
 }
+
+// Let's think about how to make this more extensible.
+// Right now we're just getting the first definition of the first 'sense' of the word;
+// how would you expand that out to handle more cases?
+
+// Look at e.g. https://freedictionaryapi.com/api/v1/entries/en/test
+// and think about how you would change getWordDefinition().
+// For example, I could return an array of definitions instead of a single one,
+// and let the display layer (in this case, terminal output, not web UI) deal with
+// composing those visually (e.g. joining elements into a string, separated by new lines).

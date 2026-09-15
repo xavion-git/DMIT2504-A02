@@ -16,5 +16,5 @@ void main() async {
 
   print('\nWord            Definition');
   print('--------------  ---------------------------------------------------');
-  print('${word}      ${definition}');
+  print('${word}      ${definition}'); // will be misaligned; how would you guarantee alignment?
 }
