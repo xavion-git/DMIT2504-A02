@@ -4,7 +4,9 @@
 
 ## Resources
 
-- [docs] [dart](https://dart.dev/docs)
+- [docs] [dart - full API docs](https://api.dart.dev/)
+
+- [docs] [dart - basic intro docs](https://dart.dev/docs)
 
 - [docs] [flutter](https://docs.flutter.dev/)
 

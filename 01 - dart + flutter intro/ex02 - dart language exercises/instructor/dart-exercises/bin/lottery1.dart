@@ -3,6 +3,10 @@
 // 3. I need some sort of logic that returns a list of 6 ints, ranging 1-49 inclusively
 // 4. I need some sort of logic that ensures no duplicates in the list (TBD)
 
+// 5. planning for deduplication:
+//     Option A) use a set, loop until the set is {count} long (set automatically dedupes)
+//     Option B) keep the list, check if value is in list before adding; if so, decrement loop counter {i} and redo
+
 
 // 2. command-line user inputs: I need to import dart:io module
 import 'dart:io';
@@ -30,7 +34,15 @@ void main() {
     // https://api.dart.dev/dart-math/Random-class.html
     value = rng.nextInt(largestNum) + 1; // Random.nextInt(upperLimit), 0 <= x < upperLimit, 
                                          // so we add 1 to make it an inclusive range 
-    lottoNumbers[i] = value;
+
+    // Option A: check if value exists in list already,
+    //            - add value if not
+    //            - decrement loop counter if it does (it's as if that iteration never happened)                                         
+    if (lottoNumbers.contains(value)) {
+      i--;
+    } else {
+      lottoNumbers[i] = value;
+    }
   }
 
   print(lottoNumbers.join(' '));
