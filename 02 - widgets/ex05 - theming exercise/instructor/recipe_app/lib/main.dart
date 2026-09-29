@@ -11,9 +11,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.pink,
+      brightness: Brightness.dark,
+    );
+
     return MaterialApp(
+      theme: ThemeData(
+        colorScheme: colorScheme,
+        // in class, we talked about considering the difference between e.g.
+        // directly using the primary colour vs. e.g. primaryContainer, onPrimary, etc.
+        // and this helps illustrate why it's important to specifically consider those things.
+        scaffoldBackgroundColor: colorScheme.primaryContainer, // try changing back to .primary — yuck!
+      ),
       home: Scaffold(
-        backgroundColor: Colors.blueGrey.shade200,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch, // like a flexbox!
                               // .stretch alignment means children fill the entire width
