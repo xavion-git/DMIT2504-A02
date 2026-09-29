@@ -23,6 +23,16 @@ class MyApp extends StatelessWidget {
         // directly using the primary colour vs. e.g. primaryContainer, onPrimary, etc.
         // and this helps illustrate why it's important to specifically consider those things.
         scaffoldBackgroundColor: colorScheme.primaryContainer, // try changing back to .primary — yuck!
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: 44,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        )
       ),
       home: const RecipePage(),
     );
