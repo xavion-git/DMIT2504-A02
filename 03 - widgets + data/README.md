@@ -1,17 +1,15 @@
 # Topic-specific documentation
 
-- [flutter] [layouts (docs)](https://docs.flutter.dev/ui/layout)
+- [flutter] [interactivity (docs)](https://docs.flutter.dev/ui/interactivity)
 
-- [flutter] [widgets (docs)](https://docs.flutter.dev/ui/widgets)
+- [flutter] [gestures (docs)](https://docs.flutter.dev/ui/advanced/gestures)
 
-- [pkg] [flex_color_scheme](https://pub.dev/packages/flex_color_scheme) *sick* package for generating schemes, including complementary light/dark themes
-  - including a *super sick* [theme playground/sandbox](https://playground.flexcolorscheme.com/)
+- [flutter] [forms (docs)](https://docs.flutter.dev/cookbook/forms)
+
 
 ---
 
 # Readings
 
-## Week 3 & 4 (Sept 14 - Sept 25)
-
 - Flutter for Beginners:
-  - [[link](https://www.oreilly.com/library/view/flutter-for-beginners/9781800565999/B16942_05_Final_SS_ePub.xhtml)] Ch5: Widgets - Building Layouts in Flutter
+  - [[link](https://learning.oreilly.com/library/view/flutter-for-beginners/9781800565999/B16942_06_Final_SS_ePub.xhtml)] Ch6: Handling User Inputs & Gestures
