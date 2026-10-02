@@ -23,6 +23,18 @@ class MyApp extends StatelessWidget {
         // directly using the primary colour vs. e.g. primaryContainer, onPrimary, etc.
         // and this helps illustrate why it's important to specifically consider those things.
         scaffoldBackgroundColor: colorScheme.primaryContainer, // try changing back to .primary — yuck!
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontFamily: "Playwrite BE WAL Guides",
+            fontSize: 44,
+            color: colorScheme.primary,
+          ),
+          titleLarge: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: colorScheme.secondary,
+          ),
+        ),
       ),
       home: const RecipePage(),
     );
@@ -37,6 +49,11 @@ class RecipePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final border = BorderSide(
+      color: Theme.of(context).colorScheme.primary,
+      width: 6,
+    );
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch, // like a flexbox!
@@ -44,18 +61,21 @@ class RecipePage extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(16.0),
-            child: const Text(
+            child: Text(
               'My Recipe App',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              )
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
-          Image.asset(
-            'assets/images/cool.jpg',
-            height: 480,
+          Container(
+            decoration: BoxDecoration(
+              border: Border(top: border, bottom: border),
+            ),
+            child: Image.asset(
+              'assets/images/cool.jpg',
+              height: 200,
+              fit: BoxFit.cover,
+            ),
           ),
           const ListWithHeading(
             heading: "Ingredients",
@@ -97,8 +117,6 @@ class ListWithHeading extends StatelessWidget {
   final String       heading;
   final List<String> listItems;
 
-  static const headingStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
-
 
   // 3. I need to write a build method that returns that group of elements
   @override
@@ -112,7 +130,7 @@ class ListWithHeading extends StatelessWidget {
           Text(
             heading,
             textAlign: TextAlign.center,
-            style: headingStyle,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           for (final item in listItems) Text(item),
         ],
