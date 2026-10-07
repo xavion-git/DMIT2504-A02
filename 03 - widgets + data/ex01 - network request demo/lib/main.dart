@@ -46,22 +46,23 @@ class _RandomDogImageState extends State<RandomDogImage> {
     return await jsonDecode(response.body)['message'];
   }
 
+  // refactor dog image fetching into its own function, so i can reuse it
+  Future<void> fetchNewDog() async {
+
+    setState(() { dogImageUrl = ''; });  // reset the dog URL state first
+
+    final url = await getRandomDogUrl(); // get new dog image URL
+
+    if (!mounted) return;                // bail out if component isn't mounted into element tree
+
+    setState(() { dogImageUrl = url; }); // overwrite dog image state
+
+  }
+
   @override
   void initState() {
     super.initState();    
-    getRandomDogUrl().then(
-      // callback function: (returnThing) => { logic to fire }
-      (url) { 
-        // exit out if component isn't mounted.
-        // where is {mounted} coming from? mouse over / look at docs: https://api.flutter.dev/flutter/widgets/State-class.html
-        if (!mounted) return;
-
-        // all good? set initial state
-        setState(
-          () { dogImageUrl = url; }
-        );
-      }
-    );
+    fetchNewDog();
   }
 
   @override
