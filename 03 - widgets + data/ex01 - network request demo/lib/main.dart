@@ -6,31 +6,7 @@ import 'package:http/http.dart';
 ///TODO: create a stateful widget, override initState to fetch the initial
 /// dog url. NOTE: will need to ensure a callback is used to be certain the
 /// widget has been mounted before calling setState().
-
-void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hi there!'),
-        ),
-      ),
-    );
-  }
-}
-
-/*
-String dogImageUrl = '';
-
 Future<void> main() async {
-  dogImageUrl = await RandomDogImage.getRandomDogUrl();
   runApp(const MainApp());
 }
 
@@ -49,8 +25,20 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class RandomDogImage extends StatelessWidget {
+// skeleton of ingredients for a stateful widget/component
+// (yes, way more annoying to set up than in React)
+
+class RandomDogImage extends StatefulWidget {
   const RandomDogImage({super.key});
+
+  @override
+  State<RandomDogImage> createState() => _RandomDogImageState();
+}
+
+
+class _RandomDogImageState extends State<RandomDogImage> {
+
+  String dogImageUrl = '';
 
   static Future<String> getRandomDogUrl() async {
     const dogEndpoint = 'https://dog.ceo/api/breeds/image/random';
@@ -59,8 +47,29 @@ class RandomDogImage extends StatelessWidget {
   }
 
   @override
-  build(BuildContext context) {
-    return Image.network(dogImageUrl);
+  void initState() {
+    super.initState();    
+    getRandomDogUrl().then(
+      // callback function: (returnThing) => { logic to fire }
+      (url) { 
+        setState(
+          () { dogImageUrl = url; }
+        );
+      }
+    );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    // ternary gang: conditionally return loading text OR dog image
+    return dogImageUrl == '' ? const Text("Loading dog...") : Image.network(dogImageUrl);
+
+  }
+
 }
-*/
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Image.network();
+//   }
+// }
