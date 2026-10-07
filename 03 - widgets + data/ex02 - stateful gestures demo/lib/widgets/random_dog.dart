@@ -26,6 +26,9 @@ class _RandomDogImageState extends State<RandomDogImage> {
     super.initState();
     // perofrm any specific initialization
     getRandomDogUrl().then((url) {
+      // exit out if not mounted 
+      if(!mounted) return;
+
       setState(() {
         dogImageUrl = url;
       });
@@ -50,9 +53,9 @@ class _RandomDogImageState extends State<RandomDogImage> {
           });
         });
       },
-      child: dogImageUrl != ''
-          ? Image.network(dogImageUrl)
-          : const Text('Loading...'),
+      child: dogImageUrl.isEmpty
+          ? const Text('Loading...')
+          : Image.network(dogImageUrl),
     );
   }
 
