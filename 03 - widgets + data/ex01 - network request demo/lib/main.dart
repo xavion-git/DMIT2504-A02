@@ -52,6 +52,11 @@ class _RandomDogImageState extends State<RandomDogImage> {
     getRandomDogUrl().then(
       // callback function: (returnThing) => { logic to fire }
       (url) { 
+        // exit out if component isn't mounted.
+        // where is {mounted} coming from? mouse over / look at docs: https://api.flutter.dev/flutter/widgets/State-class.html
+        if (!mounted) return;
+
+        // all good? set initial state
         setState(
           () { dogImageUrl = url; }
         );
@@ -62,7 +67,9 @@ class _RandomDogImageState extends State<RandomDogImage> {
   @override
   Widget build(BuildContext context) {
     // ternary gang: conditionally return loading text OR dog image
-    return dogImageUrl == '' ? const Text("Loading dog...") : Image.network(dogImageUrl);
+    return dogImageUrl.isEmpty
+      ? const Text("Loading dog...")
+      : Image.network(dogImageUrl);
 
   }
 
